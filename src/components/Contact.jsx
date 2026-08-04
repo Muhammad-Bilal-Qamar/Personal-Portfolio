@@ -50,7 +50,7 @@ export function Contact() {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Location</p>
-                <p className="text-sm font-medium">Pakistan[cite: 3]</p>
+                <p className="text-sm font-medium">Lahore, Pakistan</p>
               </div>
             </div>
           </div>
