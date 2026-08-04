@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Code, Server, Database } from "lucide-react";
+import { Code, Server, Database, Cloud } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/Card";
 import { Badge } from "./ui/Badge";
 
@@ -47,9 +48,41 @@ const skillCategories = [
   },
 ];
 
+// Duplicate list so index transitions smoothly across boundaries
+const extendedCategories = [...skillCategories, ...skillCategories];
+
 export function Skills() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  useEffect(() => {
+    // Speed: Shifts to the next card every 2.5 seconds (2500ms)
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => prev + 1);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Handle seamless loop reset when reaching the end of the cloned set
+  const handleAnimationComplete = () => {
+    if (currentIndex >= skillCategories.length) {
+      setIsTransitioning(false); // Disable animation briefly
+      setCurrentIndex(0); // Instant reset to position 0 without visual jump
+    }
+  };
+
+  // Re-enable smooth transition after instant position reset
+  useEffect(() => {
+    if (!isTransitioning) {
+      requestAnimationFrame(() => {
+        setIsTransitioning(true);
+      });
+    }
+  }, [isTransitioning]);
+
   return (
-    <section className="py-20 px-4 bg-secondary/20">
+    <section className="py-20 px-4 bg-secondary/20 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,37 +101,49 @@ export function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => {
-            const Icon = category.icon;
-            return (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Card className="h-full hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Icon className="h-5 w-5 text-primary" />
-                      {category.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill) => (
-                        <Badge key={skill} variant="secondary">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+        {/* Viewport: 3 Cards visible at a time */}
+        <div className="w-full overflow-hidden">
+          <motion.div
+            className="flex gap-6"
+            animate={{
+              // Shifts exactly 1 card + gap width per index increment
+              x: `calc(-${currentIndex} * (33.333% + 0.5rem))`,
+            }}
+            transition={
+              isTransitioning
+                ? { duration: 0.8, ease: [0.25, 1, 0.5, 1] } // Fast, buttery-smooth transition speed
+                : { duration: 0 } // Instant reset
+            }
+            onAnimationComplete={handleAnimationComplete}
+          >
+            {extendedCategories.map((category, index) => {
+              const Icon = category.icon;
+              return (
+                <div
+                  key={`${category.title}-${index}`}
+                  className="w-[calc(100%-1.5rem)] md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] flex-shrink-0"
+                >
+                  <Card className="h-full hover:shadow-md transition-all duration-300">
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-3">
+                        <Icon className="h-5 w-5 text-primary" />
+                        {category.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill) => (
+                          <Badge key={skill} variant="secondary">
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              );
+            })}
+          </motion.div>
         </div>
       </div>
     </section>
