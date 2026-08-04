@@ -2,7 +2,7 @@ export function Card({ children, className = "" }) {
   return (
     <div
       data-glow
-      className={`bg-card text-card-foreground border border-border rounded-xl shadow-sm transition-all duration-300 hover:border-primary/20 ${className}`}
+      className={`relative z-10 bg-card text-card-foreground border border-border rounded-xl shadow-sm transition-all duration-300 hover:border-primary/20 ${className}`}
     >
       {children}
     </div>

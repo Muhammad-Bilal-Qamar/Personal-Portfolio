@@ -119,7 +119,7 @@ body {
   height: 260px;
   border-radius: 9999px;
   pointer-events: none;
-  z-index: 1;
+  z-index: 0; /* Position glow underneath interactive layers */
   transform: translate(-50%, -50%);
   background: radial-gradient(
     circle,
@@ -127,7 +127,10 @@ body {
     rgb(var(--glow-color) / 0.05) 40%,
     transparent 70%
   );
-  transition: width 0.35s ease, height 0.35s ease, opacity 0.35s ease,
+  transition:
+    width 0.35s ease,
+    height 0.35s ease,
+    opacity 0.35s ease,
     background 0.35s ease;
   opacity: 0;
 }
@@ -150,5 +153,5 @@ body {
 [data-glow] {
   position: relative;
   isolation: isolate;
-  z-index: 2;
+  z-index: 10; /* Stack glow-targeted elements over the glow layer */
 }

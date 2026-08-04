@@ -54,21 +54,42 @@ const extendedCategories = [...skillCategories, ...skillCategories];
 export function Skills() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const [cardsPerView, setCardsPerView] = useState(1);
 
+  // Dynamically track active screen width to adjust movement offset
   useEffect(() => {
-    // Speed: Shifts to the next card every 2.5 seconds (2500ms)
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setCardsPerView(3);
+      } else if (window.innerWidth >= 768) {
+        setCardsPerView(2);
+      } else {
+        setCardsPerView(1);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Auto-scroll loop (pauses on mouse hover)
+  useEffect(() => {
+    if (isPaused) return;
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => prev + 1);
     }, 2500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
-  // Handle seamless loop reset when reaching the end of the cloned set
+  // Handle seamless loop reset when reaching the end of the original array length
   const handleAnimationComplete = () => {
     if (currentIndex >= skillCategories.length) {
-      setIsTransitioning(false); // Disable animation briefly
-      setCurrentIndex(0); // Instant reset to position 0 without visual jump
+      setIsTransitioning(false);
+      setCurrentIndex(0);
     }
   };
 
@@ -80,6 +101,17 @@ export function Skills() {
       });
     }
   }, [isTransitioning]);
+
+  // Dynamic X translation matrix based on active viewport card counts
+  const getTranslateX = () => {
+    if (cardsPerView === 1) {
+      return `calc(-${currentIndex} * (100% + 1.5rem))`;
+    }
+    if (cardsPerView === 2) {
+      return `calc(-${currentIndex} * (50% + 0.75rem))`;
+    }
+    return `calc(-${currentIndex} * (33.333% + 0.5rem))`;
+  };
 
   return (
     <section className="py-20 px-4 bg-secondary/20 overflow-hidden">
@@ -101,18 +133,21 @@ export function Skills() {
           </p>
         </motion.div>
 
-        {/* Viewport: 3 Cards visible at a time */}
-        <div className="w-full overflow-hidden">
+        {/* Carousel Viewport */}
+        <div
+          className="w-full overflow-hidden"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <motion.div
             className="flex gap-6"
             animate={{
-              // Shifts exactly 1 card + gap width per index increment
-              x: `calc(-${currentIndex} * (33.333% + 0.5rem))`,
+              x: getTranslateX(),
             }}
             transition={
               isTransitioning
-                ? { duration: 0.8, ease: [0.25, 1, 0.5, 1] } // Fast, buttery-smooth transition speed
-                : { duration: 0 } // Instant reset
+                ? { duration: 0.8, ease: [0.25, 1, 0.5, 1] }
+                : { duration: 0 }
             }
             onAnimationComplete={handleAnimationComplete}
           >
@@ -121,7 +156,7 @@ export function Skills() {
               return (
                 <div
                   key={`${category.title}-${index}`}
-                  className="w-[calc(100%-1.5rem)] md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] flex-shrink-0"
+                  className="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] flex-shrink-0"
                 >
                   <Card className="h-full hover:shadow-md transition-all duration-300">
                     <CardHeader>
