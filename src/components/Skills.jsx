@@ -48,7 +48,6 @@ const skillCategories = [
   },
 ];
 
-// Duplicate list so index transitions smoothly across boundaries
 const extendedCategories = [...skillCategories, ...skillCategories];
 
 export function Skills() {
@@ -57,7 +56,6 @@ export function Skills() {
   const [isPaused, setIsPaused] = useState(false);
   const [cardsPerView, setCardsPerView] = useState(1);
 
-  // Dynamically track active screen width to adjust movement offset
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -74,7 +72,6 @@ export function Skills() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Auto-scroll loop (pauses on mouse hover)
   useEffect(() => {
     if (isPaused) return;
 
@@ -85,7 +82,6 @@ export function Skills() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  // Handle seamless loop reset when reaching the end of the original array length
   const handleAnimationComplete = () => {
     if (currentIndex >= skillCategories.length) {
       setIsTransitioning(false);
@@ -93,7 +89,6 @@ export function Skills() {
     }
   };
 
-  // Re-enable smooth transition after instant position reset
   useEffect(() => {
     if (!isTransitioning) {
       requestAnimationFrame(() => {
@@ -102,7 +97,6 @@ export function Skills() {
     }
   }, [isTransitioning]);
 
-  // Dynamic X translation matrix based on active viewport card counts
   const getTranslateX = () => {
     if (cardsPerView === 1) {
       return `calc(-${currentIndex} * (100% + 1.5rem))`;
@@ -114,19 +108,28 @@ export function Skills() {
   };
 
   return (
-    <section className="py-20 px-4 bg-secondary/20 overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative py-24 px-4 overflow-hidden">
+      {/* Sleek Glowing Divider Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
+
+      {/* Floating Ambient Mesh Lighting */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-primary/5 rounded-full blur-[140px]"></div>
+        <div className="absolute bottom-10 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="text-center space-y-4 mb-12"
+          className="text-center space-y-4 mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
             Technical Skills
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
             Comprehensive expertise across the modern full-stack development
             landscape, from responsive frontends to secure, scalable backend
             APIs.
@@ -158,10 +161,12 @@ export function Skills() {
                   key={`${category.title}-${index}`}
                   className="w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] flex-shrink-0"
                 >
-                  <Card className="h-full hover:shadow-md transition-all duration-300">
+                  <Card className="h-full border border-primary/10 bg-card/60 backdrop-blur-sm hover:border-primary/30 hover:shadow-xl transition-all duration-300">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <Icon className="h-5 w-5 text-primary" />
+                      <CardTitle className="flex items-center gap-3 text-lg">
+                        <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                          <Icon className="h-5 w-5" />
+                        </div>
                         {category.title}
                       </CardTitle>
                     </CardHeader>

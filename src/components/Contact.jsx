@@ -1,196 +1,92 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardContent } from "./ui/Card";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "./ui/Button";
 
 export function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [sent, setSent] = useState(false);
-  const [sending, setSending] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleChange = (e) =>
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSending(true);
-    setError("");
-
-    emailjs
-      .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          from_email: form.email,
-          subject: form.subject,
-          message: form.message,
-        },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-      )
-      .then(() => {
-        setSent(true);
-        setForm({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => setSent(false), 3000);
-      })
-      .catch((err) => {
-        console.error("EmailJS error:", err);
-        setError("Something went wrong. Please try again or email me directly.");
-      })
-      .finally(() => setSending(false));
-  };
-
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" className="relative py-24 px-4 overflow-hidden">
+      {/* Sleek Glowing Divider Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
+
+      {/* Floating Ambient Mesh Glows */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[400px] bg-primary/10 rounded-full blur-[150px] opacity-50"></div>
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="text-center space-y-4 mb-12"
+          className="text-center space-y-4 mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold">
-            Let's Work Together
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            Get In Touch
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind, an job opportunity, or just want to connect?
-            I'd love to hear from you.
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+            Have a project in mind, an opportunity, or just want to connect?
+            Feel free to drop me a message!
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6"
-          >
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <Mail className="h-5 w-5 text-primary" />
-                  <div>
-                    <h4 className="font-medium">Email</h4>
-                    <p className="text-muted-foreground">
-                      mbilalqamar786786@gmail.com
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <Phone className="h-5 w-5 text-primary" />
-                  <div>
-                    <h4 className="font-medium">Phone</h4>
-                    <p className="text-muted-foreground">+92 329 3313330</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <div>
-                    <h4 className="font-medium">Location</h4>
-                    <p className="text-muted-foreground">Lahore, Pakistan</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="flex gap-3 pt-2">
-              <a
-                href="https://github.com/Muhammad-Bilal-Qamar"
-                target="_blank"
-                rel="noreferrer"
-                className="h-11 w-11 flex items-center justify-center rounded-full border border-border hover:bg-accent transition-colors"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/muhammad-bilal-qamar-43608b269/"
-                target="_blank"
-                rel="noreferrer"
-                className="h-11 w-11 flex items-center justify-center rounded-full border border-border hover:bg-accent transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
+        <div className="grid lg:grid-cols-3 gap-8 items-start">
+          <div className="space-y-6 lg:col-span-1">
+            <div className="flex items-center gap-4 p-4 rounded-xl border border-primary/10 bg-card/60 backdrop-blur-sm">
+              <div className="p-3 rounded-lg bg-primary/10 text-primary">
+                <Mail className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Email</p>
+                <p className="text-sm font-medium">
+                  mbilalqamar786786@gmail.com
+                </p>
+              </div>
             </div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>Send a Message</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="Your Name"
-                      required
-                      className="h-10 w-full rounded-lg border border-border bg-secondary/30 px-3 text-sm outline-none focus:ring-2 focus:ring-primary/30"
-                    />
-                    <input
-                      name="email"
-                      type="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="Your Email"
-                      required
-                      className="h-10 w-full rounded-lg border border-border bg-secondary/30 px-3 text-sm outline-none focus:ring-2 focus:ring-primary/30"
-                    />
-                  </div>
-                  <input
-                    name="subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    placeholder="Subject"
-                    className="h-10 w-full rounded-lg border border-border bg-secondary/30 px-3 text-sm outline-none focus:ring-2 focus:ring-primary/30"
-                  />
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder="Your Message"
-                    rows={5}
-                    required
-                    className="w-full rounded-lg border border-border bg-secondary/30 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/30 resize-none"
-                  />
-                  {error && (
-                    <p className="text-sm text-red-500">{error}</p>
-                  )}
-                  <Button className="w-full" type="submit" disabled={sending}>
-                    <Send className="h-4 w-4" />
-                    {sending ? "Sending..." : sent ? "Message Sent!" : "Send Message"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </motion.div>
+            <div className="flex items-center gap-4 p-4 rounded-xl border border-primary/10 bg-card/60 backdrop-blur-sm">
+              <div className="p-3 rounded-lg bg-primary/10 text-primary">
+                <MapPin className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Location</p>
+                <p className="text-sm font-medium">Pakistan[cite: 3]</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-2 p-6 md:p-8 rounded-2xl border border-primary/10 bg-card/60 backdrop-blur-sm shadow-xl">
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid md:grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  className="w-full px-4 py-3 rounded-lg bg-background/50 border border-primary/15 focus:border-primary focus:outline-hidden transition-colors"
+                />
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full px-4 py-3 rounded-lg bg-background/50 border border-primary/15 focus:border-primary focus:outline-hidden transition-colors"
+                />
+              </div>
+              <input
+                type="text"
+                placeholder="Subject"
+                className="w-full px-4 py-3 rounded-lg bg-background/50 border border-primary/15 focus:border-primary focus:outline-hidden transition-colors"
+              />
+              <textarea
+                rows={5}
+                placeholder="Your Message"
+                className="w-full px-4 py-3 rounded-lg bg-background/50 border border-primary/15 focus:border-primary focus:outline-hidden transition-colors resize-none"
+              ></textarea>
+              <Button
+                size="lg"
+                className="w-full gap-2 shadow-lg shadow-primary/20"
+              >
+                <Send className="h-4 w-4" /> Send Message
+              </Button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

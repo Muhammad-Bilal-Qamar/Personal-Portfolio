@@ -1,96 +1,128 @@
 import { motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin, Award } from "lucide-react";
+import { Briefcase, Calendar, MapPin, Code2 } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/Card";
 import { Badge } from "./ui/Badge";
 
 const experiences = [
   {
-    title: "Software Engineering Intern",
-    company: "Currently preparing & adapting business logic for real-world scenarios",
-    location: "Lahore, Pakistan",
-    period: "In Progress",
-    icon: Briefcase,
+    role: "Summer Intern",
+    organization: "Glosix Systems",
+    period: "Internship",
+    location: "Pakistan",
+    type: "Engineering",
     description:
-      "Actively preparing for and adapting business logic to real-world software engineering scenarios, translating academic full-stack skills into production-ready practice through hands-on project work.",
-    technologies: ["React", ".NET / ASP.NET Core", "SQL Server", "JWT Auth"],
+      "Engineered responsive frontends and integrated robust backend APIs. Collaborated with senior developers to build scalable modules, optimize database queries, and implement secure authentication mechanisms.",
+    skills: [
+      "React",
+      "Tailwind CSS",
+      "C#",
+      ".NET / ASP.NET Core",
+      "SQL Server",
+      "Git",
+    ],
   },
   {
-    title: "Softec Campus Ambassador",
-    company: "Superior University",
-    location: "Lahore, Pakistan",
-    period: "Ongoing",
-    icon: Award,
+    role: "Campus Ambassador",
+    organization: "Softec",
+    period: "Present",
+    location: "Campus Role",
+    type: "Leadership & Community",
     description:
-      "Represented Superior University as a Softec Campus Ambassador, promoting the university's flagship tech event and coordinating outreach. Awarded a Certificate of Appreciation by the university dean for outstanding service.",
-    technologies: ["Leadership", "Event Coordination", "Community Building"],
+      "Serving as the active Softec Campus Ambassador, driving tech event outreach, promoting developer competitions, and fostering community engagement among student developers across campus.",
+    skills: [
+      "Community Outreach",
+      "Event Promotion",
+      "Leadership",
+      "Networking",
+    ],
   },
 ];
 
 export function Experience() {
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="relative py-24 px-4 overflow-hidden">
+      {/* Sleek Glowing Divider Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent"></div>
+
+      {/* Floating Ambient Mesh Lighting */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/3 left-10 w-80 h-80 bg-primary/5 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-accent/10 rounded-full blur-[140px]"></div>
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="text-center space-y-4 mb-12"
+          className="text-center space-y-4 mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-semibold">Experience & Achievements</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Building real-world experience alongside my Computer Science studies,
-            balancing hands-on engineering work with campus leadership.
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            Work & Experience
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-base md:text-lg">
+            My professional internships, developer roles, and active campus
+            leadership positions.
           </p>
         </motion.div>
 
         <div className="space-y-6">
-          {experiences.map((exp, index) => {
-            const Icon = exp.icon;
-            return (
-              <motion.div
-                key={exp.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Card className="hover:shadow-md transition-shadow duration-300">
-                  <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={`${exp.role}-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+            >
+              <Card className="border border-primary/10 bg-card/60 backdrop-blur-sm hover:border-primary/30 hover:shadow-xl transition-all duration-300">
+                <CardHeader>
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                        <Briefcase className="h-6 w-6" />
+                      </div>
                       <div>
-                        <CardTitle className="flex items-center gap-2">
-                          <Icon className="h-5 w-5 text-primary" />
-                          {exp.title}
+                        <CardTitle className="text-xl font-semibold">
+                          {exp.role}
                         </CardTitle>
-                        <p className="text-primary mt-1">{exp.company}</p>
-                      </div>
-                      <div className="flex flex-col md:items-end gap-1">
-                        <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                          <Calendar className="h-4 w-4" />
-                          {exp.period}
-                        </div>
-                        <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                          <MapPin className="h-4 w-4" />
-                          {exp.location}
-                        </div>
+                        <p className="text-primary font-medium text-sm">
+                          {exp.organization}
+                        </p>
                       </div>
                     </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4">{exp.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline">
-                          {tech}
-                        </Badge>
-                      ))}
+
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1 bg-secondary/50 px-3 py-1 rounded-full border border-primary/10">
+                        <Calendar className="h-3.5 w-3.5" />
+                        {exp.period}
+                      </span>
+                      <Badge variant="outline" className="text-xs">
+                        {exp.type}
+                      </Badge>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {exp.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {exp.skills.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="text-xs"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
