@@ -5,20 +5,22 @@ import { Badge } from "./ui/Badge";
 
 const experiences = [
   {
-    role: "Summer Intern",
+    role: "Software Engineering Intern",
     organization: "Glosix Systems",
-    period: "Internship",
+    period: "June 2026 – Present",
     location: "Pakistan",
     type: "Engineering",
     description:
-      "Engineered responsive frontends and integrated robust backend APIs. Collaborated with senior developers to build scalable modules, optimize database queries, and implement secure authentication mechanisms.",
+      "Developing full-stack web applications — building responsive user interfaces with React and Tailwind CSS on the frontend, backend services and REST APIs with .NET / ASP.NET Core Web API, and designing and querying relational databases with SQL Server and MySQL using LINQ and Entity Framework Core.",
     skills: [
       "React",
       "Tailwind CSS",
       "C#",
       ".NET / ASP.NET Core",
       "SQL Server",
-      "Git",
+      "MySQL",
+      "LINQ",
+      "Entity Framework Core",
     ],
   },
   {

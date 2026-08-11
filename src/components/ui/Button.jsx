@@ -1,6 +1,5 @@
 const variants = {
-  default:
-    "bg-primary text-primary-foreground hover:bg-primary/90",
+  default: "bg-primary text-primary-foreground hover:bg-primary/90",
   outline:
     "border border-primary/20 bg-background/50 backdrop-blur-sm text-foreground hover:bg-primary/10",
   ghost: "bg-transparent text-foreground hover:bg-accent",

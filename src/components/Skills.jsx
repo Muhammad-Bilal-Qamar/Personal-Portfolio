@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Code, Server, Database, Cloud } from "lucide-react";
+import { Code, Server, Database, Cloud, BrainCircuit } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/Card";
 import { Badge } from "./ui/Badge";
 
@@ -36,12 +36,25 @@ const skillCategories = [
     skills: ["SQL Server", "Entity Framework Core", "MySQL", "LINQ"],
   },
   {
+    icon: BrainCircuit,
+    title: "AI / ML",
+    skills: [
+      "LangGraph",
+      "LangChain",
+      "Retrieval-Augmented Generation (RAG)",
+      "Groq LLM API",
+      "HuggingFace",
+      "Multi-Agent Systems",
+    ],
+  },
+  {
     icon: Cloud,
     title: "Cloud & DevOps",
     skills: [
       "Cloudflare R2 (Object Storage)",
       "AWS S3",
       "Vercel",
+      "Render",
       "GitHub Actions",
       "Git / GitHub",
     ],
