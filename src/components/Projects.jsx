@@ -6,6 +6,22 @@ import { Badge } from "./ui/Badge";
 
 const projects = [
   {
+    title: "Invoice Generator — AI-Powered Invoice Platform",
+    description:
+      "A client-side AI agent developed to automate billing workflows. It features a responsive glassmorphic UI built entirely with vanilla HTML, CSS, and JavaScript. The application directly integrates the Groq API—utilizing models like GPT-OSS 120B to automatically parse unstructured client briefs into structured line items. Core capabilities include a live multi-page rendering canvas, HTML5 canvas for digital signatures, an AI-powered client email drafter, native PDF export via the browser's Print API, and robust local storage state management",
+    tags: [
+      "Vanilla JavaScript",
+      "HTML5 & CSS3",
+      "Groq API",
+      "Qwen Models",
+      "AI Agent",
+      "Glassmorphism",
+      "Local Storage",
+    ],
+    github: "https://github.com/Muhammad-Bilal-Qamar",
+    demo: "https://invoice-generator-eta-three-88.vercel.app/",
+  },
+  {
     title: "ShopCo — E-Commerce Store",
     description:
       "Full-stack e-commerce platform with a React 19 + Tailwind CSS storefront and a .NET / ASP.NET Core Web API backend. JWT auth with role-based authorization, an admin dashboard, Cloudflare R2 image storage, real-time support chat via SignalR, and an AI shopping assistant powered by the Groq LLM API.",
