@@ -128,7 +128,7 @@ export function Hero() {
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-primary/10">
               <div className="text-center lg:text-left">
                 <div className="text-2xl md:text-3xl mb-1 font-semibold text-foreground">
-                  3+
+                  5+
                 </div>
                 <div className="text-sm text-muted-foreground">
                   Major Projects
@@ -136,7 +136,7 @@ export function Hero() {
               </div>
               <div className="text-center lg:text-left">
                 <div className="text-2xl md:text-3xl mb-1 font-semibold text-foreground">
-                  4th
+                  5th
                 </div>
                 <div className="text-sm text-muted-foreground">Semester CS</div>
               </div>
