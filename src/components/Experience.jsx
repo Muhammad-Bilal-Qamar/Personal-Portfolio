@@ -11,7 +11,7 @@ const experiences = [
     location: "Pakistan",
     type: "Engineering",
     description:
-      "Developing full-stack web applications — building responsive user interfaces with React and Tailwind CSS on the frontend, backend services and REST APIs with .NET / ASP.NET Core Web API, and designing and querying relational databases with SQL Server and MySQL using LINQ and Entity Framework Core.",
+      "Developing full-stack web applications — building responsive and interactive user interfaces with React, JavaScript, HTML5, CSS3, and Bootstrap on the frontend. Architecting backend services and REST APIs using FastAPI, while implementing JWT for secure user authentication and integrating secure payment gateways.",
     skills: [
       "HTML5",
       "CSS3",

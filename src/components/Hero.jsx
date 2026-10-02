@@ -64,7 +64,7 @@ export function Hero() {
                 </p>
 
                 <p className="text-lg text-muted-foreground/80 max-w-md mx-auto lg:mx-0">
-                  A passionate software engineer and 4th-semester Computer
+                  A passionate software engineer and 5th-semester Computer
                   Science student at Superior University, Pakistan. I specialize
                   in building scalable web applications, robust APIs, and modern
                   user interfaces.
