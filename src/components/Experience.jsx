@@ -13,7 +13,7 @@ const experiences = [
     description:
       "Developing full-stack web applications — building responsive user interfaces with React and Tailwind CSS on the frontend, backend services and REST APIs with .NET / ASP.NET Core Web API, and designing and querying relational databases with SQL Server and MySQL using LINQ and Entity Framework Core.",
     skills: [
-      "Html5",
+      "HTML5",
       "CSS3",
       "Bootstrap",
       "JavaScript",
@@ -26,7 +26,7 @@ const experiences = [
   {
     role: "Software Engineering Intern",
     organization: "Glosix Systems",
-    period: "June 2026 – August 2026",
+    period: "June 2026 - August 2026",
     location: "Pakistan",
     type: "Engineering",
     description:
