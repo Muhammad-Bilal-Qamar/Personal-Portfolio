@@ -5,9 +5,28 @@ import { Badge } from "./ui/Badge";
 
 const experiences = [
   {
+    role: "Full Stack Engineer Intern",
+    organization: "Progree",
+    period: "Oct 2026 – Present",
+    location: "Pakistan",
+    type: "Engineering",
+    description:
+      "Developing full-stack web applications — building responsive user interfaces with React and Tailwind CSS on the frontend, backend services and REST APIs with .NET / ASP.NET Core Web API, and designing and querying relational databases with SQL Server and MySQL using LINQ and Entity Framework Core.",
+    skills: [
+      "Html5",
+      "CSS3",
+      "Bootstrap",
+      "JavaScript",
+      "React",
+      "FastAPI",
+      "JWT",
+      "Secure Payment Integration",
+    ],
+  },
+  {
     role: "Software Engineering Intern",
     organization: "Glosix Systems",
-    period: "June 2026 – Present",
+    period: "June 2026 – August 2026",
     location: "Pakistan",
     type: "Engineering",
     description:
@@ -20,7 +39,18 @@ const experiences = [
       "SQL Server",
       "MySQL",
       "LINQ",
-      "Entity Framework Core",
+      "Entity Framework Core","LangGraph",
+      "LangChain",
+      "Retrieval-Augmented Generation (RAG)",
+      "Groq LLM API",
+      "HuggingFace",
+      "Multi-Agent Systems",
+      "Cloudflare R2 (Object Storage)",
+      "AWS S3",
+      "Vercel",
+      "Render",
+      "GitHub Actions",
+      "Git / GitHub",
     ],
   },
   {
