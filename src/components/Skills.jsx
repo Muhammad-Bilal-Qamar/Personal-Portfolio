@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Code, Server, Database, Cloud, BrainCircuit } from "lucide-react";
+import {
+  Code,
+  Server,
+  Database,
+  Cloud,
+  BrainCircuit,
+  UsersRound,
+} from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/Card";
 import { Badge } from "./ui/Badge";
 
@@ -13,7 +20,8 @@ const skillCategories = [
       "React",
       "Tailwind CSS",
       "Bootstrap",
-      "HTML5 / CSS3",
+      "HTML5",
+      "CSS3",
       "jQuery",
     ],
   },
@@ -22,12 +30,14 @@ const skillCategories = [
     title: "Backend & APIs",
     skills: [
       "C#",
-      ".NET / ASP.NET Core Web API (ASP.NET 9)",
+      ".NET / ASP.NET Core",
+      "FastAPI",
       "Python",
       "PHP",
       "C++",
       "SignalR",
       "JWT Authentication",
+      "Secure Payment Integration",
     ],
   },
   {
@@ -57,6 +67,16 @@ const skillCategories = [
       "Render",
       "GitHub Actions",
       "Git / GitHub",
+    ],
+  },
+  {
+    icon: UsersRound,
+    title: "Leadership & Community",
+    skills: [
+      "Community Outreach",
+      "Event Promotion",
+      "Leadership",
+      "Networking",
     ],
   },
 ];
